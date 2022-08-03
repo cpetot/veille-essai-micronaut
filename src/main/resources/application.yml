@@ -1,0 +1,29 @@
+micronaut:
+  application:
+    name: firstMicronautApp
+  security:
+    authentication: bearer
+    endpoints:
+      login:
+        enabled: true
+
+    reject-not-found: false
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/first_micronaut
+    driverClassName: org.postgresql.Driver
+    username: first_micronaut_user
+    password: 'first_micronaut_password'
+    schema-generate: CREATE_DROP
+    dialect: POSTGRES
+netty:
+  default:
+    allocator:
+      max-order: 3
+jpa.default.properties.hibernate.hbm2ddl.auto: update
